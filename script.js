@@ -46,15 +46,17 @@
     qtyInput.addEventListener('input', updateSelectedSummary);
   });
 
-  document.querySelectorAll('.price-row').forEach(function(row){
-    row.addEventListener('click', function(){
-      var size = row.getAttribute('data-size');
+  document.querySelectorAll('.price-card').forEach(function(card){
+    card.addEventListener('click', function(event){
+      var size = card.getAttribute('data-size');
       var target = document.querySelector('.can-check[value="' + size + '"]');
       if (target) {
+        event.preventDefault();
         target.checked = true;
         var qtyInput = target.closest('.can-option').querySelector('.can-qty');
         qtyInput.value = 1;
         updateSelectedSummary();
+        document.getElementById('order').scrollIntoView({ behavior: 'smooth', block: 'start' });
       }
     });
   });
