@@ -1,5 +1,6 @@
 {
-  "name": "crs-gas-website",
+  // wrangler.jsonc
+"name": "crsgaswebsite",
   "compatibility_date": "2026-08-28",
   "assets": {
     "directory": "./"
