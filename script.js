@@ -12,7 +12,6 @@ document.addEventListener('DOMContentLoaded', function () {
     canOptions.forEach(function (option) {
       var check = option.querySelector('.can-check');
       var qtyInput = option.querySelector('.can-qty');
-
       var isChecked = check.checked;
 
       option.classList.toggle('selected', isChecked);
@@ -20,7 +19,6 @@ document.addEventListener('DOMContentLoaded', function () {
 
       if (isChecked) {
         var qty = parseInt(qtyInput.value, 10) || 0;
-
         if (qty > 0) {
           selected.push(check.value + ' x' + qty);
         }
@@ -43,11 +41,11 @@ document.addEventListener('DOMContentLoaded', function () {
 
     canOptions.forEach(function (option) {
       var check = option.querySelector('.can-check');
+      var qtyInput = option.querySelector('.can-qty');
 
       if (check.checked) {
         var price = parseFloat(check.getAttribute('data-price')) || 0;
-        var qty = parseInt(option.querySelector('.can-qty').value, 10) || 0;
-
+        var qty = parseInt(qtyInput.value, 10) || 0;
         total += price * qty;
       }
     });
@@ -62,36 +60,40 @@ document.addEventListener('DOMContentLoaded', function () {
   }
 
   canOptions.forEach(function (option) {
-
     var check = option.querySelector('.can-check');
     var qtyInput = option.querySelector('.can-qty');
 
     check.addEventListener('change', updateSelectedSummary);
 
-    qtyInput.addEventListener('input', updateSelectedSummary);
+    qtyInput.addEventListener('input', function () {
+      updateSelectedSummary();
+    });
 
-    qtyInput.addEventListener('change', updateSelectedSummary);
+    qtyInput.addEventListener('change', function () {
+      updateSelectedSummary();
+    });
 
     /*
-     * Prevent clicking the quantity field from also
-     * triggering the surrounding label/checkbox.
+     * Quantity controls are inside the checkbox label.
+     * Prevent label activation when the customer interacts
+     * with the quantity field, otherwise the checkbox can
+     * toggle off and the quantity field becomes unusable.
      */
-    qtyInput.addEventListener('click', function (event) {
+    qtyInput.addEventListener('mousedown', function (event) {
       event.stopPropagation();
     });
 
+    qtyInput.addEventListener('click', function (event) {
+      event.preventDefault();
+      event.stopPropagation();
+      qtyInput.focus();
+    });
   });
 
-  /*
-   * Clicking a price card selects that cylinder
-   * and takes the customer to the order form.
-   */
+  /* Clicking a price card selects that cylinder and scrolls to the order form. */
   document.querySelectorAll('.price-card').forEach(function (card) {
-
     card.addEventListener('click', function (event) {
-
       var size = card.getAttribute('data-size');
-
       var target = Array.prototype.find.call(
         document.querySelectorAll('.can-check'),
         function (checkbox) {
@@ -100,31 +102,24 @@ document.addEventListener('DOMContentLoaded', function () {
       );
 
       if (target) {
-
         event.preventDefault();
-
         target.checked = true;
 
         var option = target.closest('.can-option');
         var qtyInput = option.querySelector('.can-qty');
-
         qtyInput.value = 1;
 
         updateSelectedSummary();
 
         var orderSection = document.getElementById('order');
-
         if (orderSection) {
           orderSection.scrollIntoView({
             behavior: 'smooth',
             block: 'start'
           });
         }
-
       }
-
     });
-
   });
 
   var form = document.getElementById('order-form');
@@ -136,33 +131,23 @@ document.addEventListener('DOMContentLoaded', function () {
   }
 
   form.addEventListener('submit', function (e) {
-
     e.preventDefault();
 
-    /*
-     * Make sure at least one cylinder has been selected.
-     */
     var hasSelection = false;
-
     canOptions.forEach(function (option) {
-      var check = option.querySelector('.can-check');
-
-      if (check.checked) {
+      if (option.querySelector('.can-check').checked) {
         hasSelection = true;
       }
     });
 
     if (!hasSelection) {
-
       status.textContent = 'Please select at least one cylinder size.';
       status.className = 'form-status err';
-
       return;
     }
 
     submitBtn.disabled = true;
     submitBtn.textContent = 'Sending…';
-
     status.textContent = 'Sending your order…';
     status.className = 'form-status';
 
@@ -173,69 +158,38 @@ document.addEventListener('DOMContentLoaded', function () {
         'Accept': 'application/json'
       }
     })
+      .then(function (res) {
+        if (res.ok) {
+          status.textContent = 'Order sent — we’ll be in touch shortly.';
+          status.className = 'form-status ok';
+          form.reset();
+          updateSelectedSummary();
+        } else {
+          return res.json()
+            .catch(function () { return {}; })
+            .then(function (data) {
+              var message = 'Something went wrong — please WhatsApp us instead.';
 
-    .then(function (res) {
-
-      if (res.ok) {
-
-        status.textContent =
-          'Order sent — we’ll be in touch shortly.';
-
-        status.className = 'form-status ok';
-
-        form.reset();
-
-        updateSelectedSummary();
-
-      } else {
-
-        return res.json()
-          .catch(function () {
-            return {};
-          })
-          .then(function (data) {
-
-            var message =
-              'Something went wrong — please WhatsApp us instead.';
-
-            if (data && data.errors && data.errors.length) {
-              message = data.errors
-                .map(function (error) {
+              if (data && data.errors && data.errors.length) {
+                message = data.errors.map(function (error) {
                   return error.message;
-                })
-                .join(' ');
-            }
+                }).join(' ');
+              }
 
-            status.textContent = message;
-            status.className = 'form-status err';
-
-          });
-
-      }
-
-    })
-
-    .catch(function () {
-
-      status.textContent =
-        'Something went wrong — please WhatsApp us instead.';
-
-      status.className = 'form-status err';
-
-    })
-
-    .finally(function () {
-
-      submitBtn.disabled = false;
-      submitBtn.textContent = 'Send LPG order';
-
-    });
-
+              status.textContent = message;
+              status.className = 'form-status err';
+            });
+        }
+      })
+      .catch(function () {
+        status.textContent = 'Something went wrong — please WhatsApp us instead.';
+        status.className = 'form-status err';
+      })
+      .finally(function () {
+        submitBtn.disabled = false;
+        submitBtn.textContent = 'Send LPG order';
+      });
   });
 
-  /*
-   * Initialise the order form.
-   */
   updateSelectedSummary();
-
 });
