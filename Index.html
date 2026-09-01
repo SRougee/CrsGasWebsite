@@ -166,6 +166,40 @@
   .field input:focus, .field select:focus, .field textarea:focus{
     outline:2px solid var(--green-bright); outline-offset:1px;
   }
+  .can-grid{
+    display:grid; grid-template-columns:repeat(2, minmax(0, 1fr)); gap:10px;
+  }
+  .can-option{
+    display:flex; flex-direction:column; gap:8px;
+    background:var(--bg-raised); border:1px solid var(--line); border-radius:var(--radius);
+    padding:10px 12px; color:var(--text); cursor:pointer; transition:border-color 0.15s ease, background 0.15s ease;
+  }
+  .can-option.selected{
+    border-color:rgba(140,207,63,0.8); background:rgba(63,163,91,0.08);
+  }
+  .can-option input[type="checkbox"]{
+    accent-color:var(--green-bright);
+    width:16px; height:16px;
+  }
+  .can-top{
+    display:flex; align-items:center; justify-content:space-between; gap:8px;
+  }
+  .can-name{
+    font-family:'Barlow Condensed'; font-weight:700; font-size:22px; line-height:1;
+    letter-spacing:0.1px;
+  }
+  .can-price{
+    font-size:12px; color:var(--green-bright); font-weight:600;
+  }
+  .can-qty{
+    width:100%; display:none; background:var(--bg); border:1px solid var(--line); color:var(--text);
+    padding:8px 10px; border-radius:var(--radius); font:inherit;
+  }
+  .can-option.selected .can-qty{display:block;}
+  .selected-types{
+    margin-top:8px; font-size:12.5px; color:var(--text-dim);
+    min-height:18px;
+  }
   .order-total{
     display:flex; justify-content:space-between; align-items:baseline;
     padding-top:6px; border-top:1px solid var(--line);
@@ -182,6 +216,11 @@
   .form-status{font-size:14px; text-align:center; min-height:20px;}
   .form-status.ok{color:var(--green-bright);}
   .form-status.err{color:#e0796b;}
+
+  /* ---------- Sitemap ---------- */
+  .sitemap{padding:16px 0 52px;}
+  .sitemap-grid{display:grid; gap:12px; margin-top:20px;}
+  @media(min-width:700px){ .sitemap-grid{grid-template-columns:repeat(2, minmax(0,1fr));} }
 
   /* ---------- Contact ---------- */
   .contact{padding:16px 0 52px;}
@@ -201,7 +240,7 @@
   }
 </style>
 </head>
-<body>
+<body id="top">
 
 <header>
   <div class="header-inner">
@@ -240,30 +279,30 @@
       <p>Every size, one clear price. Exchange your empty or take a full refill.</p>
     </div>
     <div class="price-list">
-      <a class="price-row" href="#order" data-size="5kg" data-price="150">
+      <a class="price-row" href="#order" data-size="5kg" data-price="165">
         <div class="cyl"></div>
         <div class="price-meta"><span class="kg">5kg</span><span class="note">Small &amp; portable</span></div>
-        <div class="price-amount">R150</div>
+        <div class="price-amount">R165</div>
       </a>
       <a class="price-row" href="#order" data-size="9kg" data-price="280">
         <div class="cyl"></div>
         <div class="price-meta"><span class="kg">9kg</span><span class="note">Home cooking</span></div>
-        <div class="price-amount">R280</div>
+        <div class="price-amount">R305</div>
       </a>
       <a class="price-row" href="#order" data-size="14kg" data-price="480">
         <div class="cyl"></div>
         <div class="price-meta"><span class="kg">14kg</span><span class="note">Household staple</span></div>
-        <div class="price-amount">R480</div>
+        <div class="price-amount">R520</div>
       </a>
       <a class="price-row" href="#order" data-size="19kg" data-price="600">
         <div class="cyl"></div>
         <div class="price-meta"><span class="kg">19kg</span><span class="note">Small business</span></div>
-        <div class="price-amount">R600</div>
+        <div class="price-amount">R650</div>
       </a>
       <a class="price-row" href="#order" data-size="48kg" data-price="1400">
         <div class="cyl"></div>
         <div class="price-meta"><span class="kg">48kg</span><span class="note">Heavy-duty commercial</span></div>
-        <div class="price-amount">R1400</div>
+        <div class="price-amount">R1520</div>
       </a>
     </div>
 
@@ -297,31 +336,51 @@
         </div>
       </div>
 
-      <div class="row-2">
-        <div class="field">
-          <label for="size">Cylinder size</label>
-          <select id="size" name="cylinder_size" required>
-            <option value="">Select size</option>
-            <option value="5kg" data-price="150">5kg — R150</option>
-            <option value="9kg" data-price="280">9kg — R280</option>
-            <option value="14kg" data-price="480">14kg — R480</option>
-            <option value="19kg" data-price="600">19kg — R600</option>
-            <option value="48kg" data-price="1400">48kg — R1400</option>
-          </select>
-        </div>
-        <div class="field">
-          <label for="qty">Quantity</label>
-          <input type="number" id="qty" name="quantity" min="1" max="20" value="1" required>
-        </div>
-      </div>
-
       <div class="field">
-        <label for="type">Order type</label>
-        <select id="type" name="order_type" required>
-          <option value="Exchange">Exchange empty cylinder</option>
-          <option value="Refill">Refill (bring full cylinder)</option>
-          <option value="New">New cylinder purchase</option>
-        </select>
+        <label>Gas cylinder types</label>
+        <div class="can-grid">
+          <label class="can-option">
+            <div class="can-top">
+              <input type="checkbox" class="can-check" name="cylinder_types[]" value="5kg" data-price="165">
+              <span class="can-name">5kg</span>
+              <span class="can-price">R165</span>
+            </div>
+            <input type="number" class="can-qty" data-size="5kg" min="1" max="20" value="1" aria-label="5kg quantity">
+          </label>
+          <label class="can-option">
+            <div class="can-top">
+              <input type="checkbox" class="can-check" name="cylinder_types[]" value="9kg" data-price="305">
+              <span class="can-name">9kg</span>
+              <span class="can-price">R305</span>
+            </div>
+            <input type="number" class="can-qty" data-size="9kg" min="1" max="20" value="1" aria-label="9kg quantity">
+          </label>
+          <label class="can-option">
+            <div class="can-top">
+              <input type="checkbox" class="can-check" name="cylinder_types[]" value="14kg" data-price="520">
+              <span class="can-name">14kg</span>
+              <span class="can-price">R520</span>
+            </div>
+            <input type="number" class="can-qty" data-size="14kg" min="1" max="20" value="1" aria-label="14kg quantity">
+          </label>
+          <label class="can-option">
+            <div class="can-top">
+              <input type="checkbox" class="can-check" name="cylinder_types[]" value="19kg" data-price="650">
+              <span class="can-name">19kg</span>
+              <span class="can-price">R650</span>
+            </div>
+            <input type="number" class="can-qty" data-size="19kg" min="1" max="20" value="1" aria-label="19kg quantity">
+          </label>
+          <label class="can-option">
+            <div class="can-top">
+              <input type="checkbox" class="can-check" name="cylinder_types[]" value="48kg" data-price="1520">
+              <span class="can-name">48kg</span>
+              <span class="can-price">R1520</span>
+            </div>
+            <input type="number" class="can-qty" data-size="48kg" min="1" max="20" value="1" aria-label="48kg quantity">
+          </label>
+        </div>
+        <div class="selected-types" id="selected-types" aria-live="polite">No cylinders selected yet</div>
       </div>
 
       <div class="field">
@@ -333,16 +392,34 @@
         <label for="notes">Notes (optional)</label>
         <textarea id="notes" name="notes" placeholder="Best time to deliver, gate code, etc."></textarea>
       </div>
+      <input type="hidden" id="selected-cylinders" name="selected_cylinders">
 
       <div class="order-total">
         <span class="label">Estimated total</span>
-        <span class="amount" id="order-total">R150</span>
+        <span class="amount" id="order-total">R0</span>
       </div>
 
       <button type="submit" class="submit-btn" id="submit-btn">Send order</button>
       <p class="form-status" id="form-status"></p>
       <p class="form-note">We'll confirm your order and delivery time by WhatsApp or phone call shortly after you submit.</p>
     </form>
+  </div>
+</section>
+
+<section class="sitemap" id="sitemap">
+  <div class="wrap">
+    <div class="section-head">
+      <h2>Sitemap</h2>
+      <p>Quick links to the main pages and contact details.</p>
+    </div>
+    <nav class="sitemap-grid" aria-label="Site sitemap">
+      <a class="contact-card" href="#top"><div><strong>Home</strong><span>Back to the top</span></div></a>
+      <a class="contact-card" href="#prices"><div><strong>Prices</strong><span>Cylinder price list</span></div></a>
+      <a class="contact-card" href="#order"><div><strong>Order</strong><span>Place your request</span></div></a>
+      <a class="contact-card" href="https://wa.me/27671161984" target="_blank" rel="noopener"><div><strong>WhatsApp</strong><span>Quick chat with Christo</span></div></a>
+      <a class="contact-card" href="tel:+27671161984"><div><strong>Call</strong><span>Direct phone support</span></div></a>
+      <a class="contact-card" href="#sitemap"><div><strong>Sitemap</strong><span>Jump to all sections</span></div></a>
+    </nav>
   </div>
 </section>
 
@@ -375,26 +452,64 @@
 </footer>
 
 <script>
-  // Keep the estimated total in sync with size + quantity
-  var sizeSelect = document.getElementById('size');
-  var qtyInput = document.getElementById('qty');
+  var canOptions = document.querySelectorAll('.can-option');
+  var selectedTypes = document.getElementById('selected-types');
+  var hiddenSelection = document.getElementById('selected-cylinders');
   var totalEl = document.getElementById('order-total');
 
-  function updateTotal(){
-    var opt = sizeSelect.options[sizeSelect.selectedIndex];
-    var price = parseFloat(opt && opt.getAttribute('data-price')) || 0;
-    var qty = parseInt(qtyInput.value, 10) || 0;
-    totalEl.textContent = 'R' + (price * qty);
-  }
-  sizeSelect.addEventListener('change', updateTotal);
-  qtyInput.addEventListener('input', updateTotal);
+  function updateSelectedSummary(){
+    var selected = [];
+    canOptions.forEach(function(option){
+      var check = option.querySelector('.can-check');
+      var qtyInput = option.querySelector('.can-qty');
+      var isChecked = check.checked;
+      option.classList.toggle('selected', isChecked);
+      qtyInput.disabled = !isChecked;
 
-  // Prefill size when tapping a price row
+      if (isChecked) {
+        var qty = parseInt(qtyInput.value, 10) || 0;
+        if (qty > 0) {
+          selected.push(check.value + ' x' + qty);
+        }
+      }
+    });
+
+    selectedTypes.textContent = selected.length ? 'Selected: ' + selected.join(', ') : 'No cylinders selected yet';
+    hiddenSelection.value = selected.length ? selected.join(' | ') : '';
+    updateTotal();
+  }
+
+  function updateTotal(){
+    var total = 0;
+    canOptions.forEach(function(option){
+      var check = option.querySelector('.can-check');
+      if (check.checked) {
+        var price = parseFloat(check.getAttribute('data-price')) || 0;
+        var qty = parseInt(option.querySelector('.can-qty').value, 10) || 0;
+        total += price * qty;
+      }
+    });
+    totalEl.textContent = 'R' + total;
+  }
+
+  canOptions.forEach(function(option){
+    var check = option.querySelector('.can-check');
+    var qtyInput = option.querySelector('.can-qty');
+
+    check.addEventListener('change', updateSelectedSummary);
+    qtyInput.addEventListener('input', updateSelectedSummary);
+  });
+
   document.querySelectorAll('.price-row').forEach(function(row){
     row.addEventListener('click', function(){
       var size = row.getAttribute('data-size');
-      sizeSelect.value = size;
-      updateTotal();
+      var target = document.querySelector('.can-check[value="' + size + '"]');
+      if (target) {
+        target.checked = true;
+        var qtyInput = target.closest('.can-option').querySelector('.can-qty');
+        qtyInput.value = 1;
+        updateSelectedSummary();
+      }
     });
   });
 
@@ -421,7 +536,7 @@
         status.textContent = 'Order sent — we\'ll be in touch shortly.';
         status.className = 'form-status ok';
         form.reset();
-        updateTotal();
+        updateSelectedSummary();
       } else {
         status.textContent = 'Something went wrong — please WhatsApp us instead.';
         status.className = 'form-status err';
@@ -434,6 +549,8 @@
       submitBtn.textContent = 'Send order';
     });
   });
+
+  updateSelectedSummary();
 </script>
 
 </body>
