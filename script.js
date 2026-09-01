@@ -17,30 +17,21 @@ document.addEventListener('DOMContentLoaded', function () {
       option.classList.toggle('selected', isChecked);
       qtyInput.disabled = !isChecked;
 
-      // Keep the quantity control explicitly visible when selected.
-      qtyInput.style.display = isChecked ? 'block' : 'none';
-
       if (isChecked) {
         var qty = parseInt(qtyInput.value, 10) || 0;
-        if (qty < 1) {
-          qty = 1;
-          qtyInput.value = '1';
+        if (qty > 0) {
+          selected.push(check.value + ' x' + qty);
         }
-        selected.push(check.value + ' x' + qty);
       }
     });
 
-    if (selectedTypes) {
-      selectedTypes.textContent = selected.length
-        ? 'Selected: ' + selected.join(', ')
-        : 'No cylinders selected yet';
-    }
+    selectedTypes.textContent = selected.length
+      ? 'Selected: ' + selected.join(', ')
+      : 'No cylinders selected yet';
 
-    if (hiddenSelection) {
-      hiddenSelection.value = selected.length
-        ? selected.join(' | ')
-        : '';
-    }
+    hiddenSelection.value = selected.length
+      ? selected.join(' | ')
+      : '';
 
     updateTotal();
   }
@@ -50,23 +41,18 @@ document.addEventListener('DOMContentLoaded', function () {
 
     canOptions.forEach(function (option) {
       var check = option.querySelector('.can-check');
-      var qtyInput = option.querySelector('.can-qty');
 
       if (check.checked) {
         var price = parseFloat(check.getAttribute('data-price')) || 0;
-        var qty = parseInt(qtyInput.value, 10) || 1;
+        var qty = parseInt(option.querySelector('.can-qty').value, 10) || 0;
         total += price * qty;
       }
     });
 
-    if (totalEl) {
-      totalEl.textContent = 'R' + total.toLocaleString('en-ZA');
-    }
+    totalEl.textContent = 'R' + total;
 
     if (estimatedTotal) {
-      estimatedTotal.value = total > 0
-        ? 'R' + total.toLocaleString('en-ZA')
-        : '';
+      estimatedTotal.value = total > 0 ? 'R' + total : '';
     }
   }
 
@@ -75,34 +61,10 @@ document.addEventListener('DOMContentLoaded', function () {
     var qtyInput = option.querySelector('.can-qty');
 
     check.addEventListener('change', updateSelectedSummary);
-
     qtyInput.addEventListener('input', updateSelectedSummary);
-    qtyInput.addEventListener('change', updateSelectedSummary);
-
-    /*
-     * The quantity input is currently inside a <label>. Browsers can treat
-     * clicks on the quantity field as clicks on the checkbox label, which
-     * toggles the checkbox back off. Cancel the label's activation whenever
-     * the customer interacts with the quantity control.
-     */
-    ['pointerdown', 'mousedown', 'click'].forEach(function (eventName) {
-      qtyInput.addEventListener(eventName, function (event) {
-        event.preventDefault();
-        event.stopPropagation();
-      });
-    });
-
-    // Also guard the parent label in case the browser dispatches activation
-    // from the label itself rather than the input target.
-    option.addEventListener('click', function (event) {
-      if (event.target === qtyInput || qtyInput.contains(event.target)) {
-        event.preventDefault();
-        event.stopPropagation();
-      }
-    }, true);
   });
 
-  /* Clicking a price card selects that cylinder and scrolls to the order form. */
+  /* Prefill size when tapping a price card. */
   document.querySelectorAll('.price-card').forEach(function (card) {
     card.addEventListener('click', function (event) {
       var size = card.getAttribute('data-size');
@@ -119,7 +81,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
         var option = target.closest('.can-option');
         var qtyInput = option.querySelector('.can-qty');
-        qtyInput.value = '1';
+        qtyInput.value = 1;
 
         updateSelectedSummary();
 
@@ -139,7 +101,6 @@ document.addEventListener('DOMContentLoaded', function () {
   var status = document.getElementById('form-status');
 
   if (!form) {
-    updateSelectedSummary();
     return;
   }
 
@@ -154,21 +115,15 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 
     if (!hasSelection) {
-      if (status) {
-        status.textContent = 'Please select at least one cylinder size.';
-        status.className = 'form-status err';
-      }
+      status.textContent = 'Please select at least one cylinder size.';
+      status.className = 'form-status err';
       return;
     }
 
-    if (submitBtn) {
-      submitBtn.disabled = true;
-      submitBtn.textContent = 'Sending…';
-    }
-    if (status) {
-      status.textContent = 'Sending your order…';
-      status.className = 'form-status';
-    }
+    submitBtn.disabled = true;
+    submitBtn.textContent = 'Sending…';
+    status.textContent = 'Sending your order…';
+    status.className = 'form-status';
 
     fetch(form.action, {
       method: 'POST',
@@ -179,10 +134,8 @@ document.addEventListener('DOMContentLoaded', function () {
     })
       .then(function (res) {
         if (res.ok) {
-          if (status) {
-            status.textContent = 'Order sent — we’ll be in touch shortly.';
-            status.className = 'form-status ok';
-          }
+          status.textContent = 'Order sent — we’ll be in touch shortly.';
+          status.className = 'form-status ok';
           form.reset();
           updateSelectedSummary();
         } else {
@@ -197,24 +150,18 @@ document.addEventListener('DOMContentLoaded', function () {
                 }).join(' ');
               }
 
-              if (status) {
-                status.textContent = message;
-                status.className = 'form-status err';
-              }
+              status.textContent = message;
+              status.className = 'form-status err';
             });
         }
       })
       .catch(function () {
-        if (status) {
-          status.textContent = 'Something went wrong — please WhatsApp us instead.';
-          status.className = 'form-status err';
-        }
+        status.textContent = 'Something went wrong — please WhatsApp us instead.';
+        status.className = 'form-status err';
       })
       .finally(function () {
-        if (submitBtn) {
-          submitBtn.disabled = false;
-          submitBtn.textContent = 'Send LPG order';
-        }
+        submitBtn.disabled = false;
+        submitBtn.textContent = 'Send LPG order';
       });
   });
 
