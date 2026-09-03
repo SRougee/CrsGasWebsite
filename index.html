@@ -119,7 +119,7 @@
       c.closest('.can-option').classList.toggle('selected',c.checked);
       q.disabled=!c.checked;
     });
-    const items=checks.filter(c=>c.checked).map(c=>{const q=document.querySelector('.can-qty[data-size="'+c.value+'"];');return {size:c.value,qty:Math.max(1,parseInt(q.value||'1',10)),price:Number(c.dataset.price)}});
+    const items=checks.filter(c=>c.checked).map(c=>{const q=document.querySelector('.can-qty[data-size="'+c.value+'"]');return {size:c.value,qty:Math.max(1,parseInt(q.value||'1',10)),price:Number(c.dataset.price)}});
     const amount=items.reduce((sum,i)=>sum+i.qty*i.price,0);
     summary.textContent=items.length?items.map(i=>i.qty+' × '+i.size+' — R'+(i.qty*i.price)).join(' · '):'No cylinders selected yet';
     total.textContent='R'+amount.toLocaleString('en-ZA');
