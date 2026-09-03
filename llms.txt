@@ -1,45 +1,60 @@
 # CRS Gas
 
-CRS Gas is an LPG gas cylinder exchange, refill and delivery service serving Boksburg and surrounding areas in Gauteng, South Africa.
+CRS Gas is a locally focused LPG gas refill and delivery business serving homes and businesses in Boksburg, Germiston and Benoni, Gauteng, South Africa.
 
 ## Business
 
 Name: CRS Gas
+Founder: Christo Jordaan
 Website: https://crsgas.co.za/
-Location: Boksburg and surrounding areas, Gauteng, South Africa
-Phone: +27 67 116 1984
-WhatsApp: https://wa.me/27671161984
+Service area: Boksburg, Germiston and Benoni, Gauteng, South Africa
+Business age: Approximately two months
+
+## About CRS Gas
+
+CRS Gas was founded by Christo Jordaan. Although the business is new, Christo has previous experience working in gas companies and extensive knowledge across the gas sector. CRS Gas is focused on providing a convenient local LPG refill service for households and businesses.
 
 ## Services
 
-CRS Gas provides:
+CRS Gas currently provides:
 
-- LPG gas cylinder exchanges
 - LPG gas cylinder refills
-- LPG gas cylinder delivery
+- LPG refill delivery
 - Household LPG gas supply
 - Commercial LPG gas supply
 
-## Cylinder sizes and prices
+CRS Gas currently focuses on refills. Cylinder sales and cylinder exchanges are not currently advertised as services.
 
-- 5kg LPG cylinder — R165
-- 9kg LPG cylinder — R305
-- 14kg LPG cylinder — R520
-- 19kg LPG cylinder — R650
-- 48kg LPG cylinder — R1520
+## Cylinder sizes and current website prices
+
+- 5kg LPG cylinder refill — R150
+- 9kg LPG cylinder refill — R300
+- 14kg LPG cylinder refill — R500
+- 19kg LPG cylinder refill — R620
+- 48kg LPG cylinder refill — R1450
+
+Prices shown on the website are subject to confirmation when an order is placed.
 
 ## Delivery
 
-Free delivery is advertised for Boksburg and surrounding areas. Customers should contact CRS Gas to confirm delivery availability for their specific suburb or address.
+CRS Gas serves Boksburg, Germiston and Benoni. Customers should contact CRS Gas to confirm delivery availability for their specific suburb or address.
 
 ## Ordering
 
-Customers can submit an order through the CRS Gas website or contact CRS Gas directly by WhatsApp or telephone.
+Customers can submit an LPG refill order through the CRS Gas website or contact the team directly by WhatsApp or telephone.
 
 ## Contact
 
-Phone and WhatsApp:
-+27 67 116 1984
+Christo Jordaan — Phone and WhatsApp: +27 67 116 1984
+Ronnie — Phone and WhatsApp: +27 60 565 0595
 
-Website:
-https://crsgas.co.za/
+## Social profiles
+
+Instagram: https://www.instagram.com/crsgas/
+TikTok: https://www.tiktok.com/@crs.gas/photo/7681290595926576404
+Facebook: https://web.facebook.com/people/Crs-Gas/pfbid0HDh7pnnF5ugY9uyYHnhJgjTRQXg6adeEacdpoYNkoc6NVzxAKgkfBv9WuPXhDZ5gl/
+
+## Key website pages
+
+Home: https://crsgas.co.za/
+About: https://crsgas.co.za/about.html
