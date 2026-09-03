@@ -23,6 +23,14 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;800&amp;family=Barlow:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-MKJSPKYF49"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-MKJSPKYF49');
+  </script>
   <script type="application/ld+json">
   {"@context":"https://schema.org","@type":"LocalBusiness","@id":"https://crsgas.co.za/#business","name":"CRS Gas","url":"https://crsgas.co.za/","telephone":["+27671161984","+27605650595"],"description":"LPG gas refill and delivery service for homes and businesses in Boksburg, Germiston and Benoni.","areaServed":[{"@type":"City","name":"Boksburg"},{"@type":"City","name":"Germiston"},{"@type":"City","name":"Benoni"}],"founder":{"@type":"Person","name":"Christo Jordaan"},"priceRange":"R150-R1450","sameAs":["https://www.instagram.com/crsgas/","https://www.tiktok.com/@crs.gas/photo/7681290595926576404","https://web.facebook.com/people/Crs-Gas/pfbid0HDh7pnnF5ugY9uyYHnhJgjTRQXg6adeEacdpoYNkoc6NVzxAKgkfBv9WuPXhDZ5gl/"]}
   </script>
@@ -96,14 +104,29 @@
 </div></div></section>
 <section class="service-area" id="service-area"><div class="wrap"><div class="section-head"><span class="tag">Service area</span><h2>LPG gas delivery in Boksburg, Germiston &amp; Benoni</h2><p>CRS Gas serves customers in Boksburg, Germiston and Benoni. Contact us to confirm delivery to your specific suburb or address.</p></div></div></section>
 </main>
-<footer id="sitemap"><div class="wrap"><p><strong>CRS Gas</strong> — LPG gas refills and delivery in Boksburg, Germiston and Benoni.</p><p><a href="./index.html">Home</a> · <a href="./index.html#prices">Prices</a> · <a href="./index.html#order">Order LPG gas</a> · <a href="./about.html">About Us</a> · <a href="tel:+27671161984">+27 67 116 1984</a> · <a href="tel:+27605650595">+27 60 565 0595 (Ronnie)</a></p><p class="social-links"><a href="https://www.instagram.com/crsgas/" target="_blank" rel="noopener">Instagram</a> · <a href="https://www.tiktok.com/@crs.gas/photo/7681290595926576404" target="_blank" rel="noopener">TikTok</a> · <a href="https://web.facebook.com/people/Crs-Gas/pfbid0HDh7pnnF5ugY9uyYHnhJgjTRQXg6adeEacdpoYNkoc6NVzxAKgkfBv9WuPXhDZ5gl/" target="_blank" rel="noopener">Facebook</a></p></div></footer>
+<footer id="sitemap"><div class="wrap"><p><strong>CRS Gas</strong> — LPG gas refills and delivery in Boksburg, Germiston and Benoni.</p><p><a href="./index.html">Home</a> · <a href="./index.html#prices">Prices</a> · <a href="./index.html#order">Order</a> · <a href="./about.html">About Us</a></p><p>Follow CRS Gas: <a href="https://www.instagram.com/crsgas/" target="_blank" rel="noopener">Instagram</a> · <a href="https://www.tiktok.com/@crs.gas/photo/7681290595926576404" target="_blank" rel="noopener">TikTok</a> · <a href="https://web.facebook.com/people/Crs-Gas/pfbid0HDh7pnnF5ugY9uyYHnhJgjTRQXg6adeEacdpoYNkoc6NVzxAKgkfBv9WuPXhDZ5gl/" target="_blank" rel="noopener">Facebook</a></p><p>&copy; 2026 CRS Gas. All rights reserved.</p></div></footer>
 <script>
-var canOptions=document.querySelectorAll('.can-option');var selectedTypes=document.getElementById('selected-types');var hiddenSelection=document.getElementById('selected-cylinders');var estimatedTotal=document.getElementById('estimated-total');var totalEl=document.getElementById('order-total');
-function updateSelectedSummary(){var selected=[];canOptions.forEach(function(option){var check=option.querySelector('.can-check');var qtyInput=option.querySelector('.can-qty');var isChecked=check.checked;option.classList.toggle('selected',isChecked);qtyInput.disabled=!isChecked;if(isChecked){var qty=parseInt(qtyInput.value,10)||0;if(qty>0)selected.push(check.value+' x'+qty);}});selectedTypes.textContent=selected.length?'Selected: '+selected.join(', '):'No cylinders selected yet';hiddenSelection.value=selected.length?selected.join(' | '):'';updateTotal();}
-function updateTotal(){var total=0;canOptions.forEach(function(option){var check=option.querySelector('.can-check');var qtyInput=option.querySelector('.can-qty');if(check.checked){var qty=parseInt(qtyInput.value,10)||0;var price=parseInt(check.getAttribute('data-price'),10)||0;total+=qty*price;}});totalEl.textContent='R'+total.toLocaleString('en-ZA');estimatedTotal.value='R'+total.toLocaleString('en-ZA');}
-canOptions.forEach(function(option){option.querySelector('.can-check').addEventListener('change',updateSelectedSummary);option.querySelector('.can-qty').addEventListener('input',updateSelectedSummary);});
-var priceCards=document.querySelectorAll('.price-card');priceCards.forEach(function(card){card.addEventListener('click',function(){var size=card.getAttribute('data-size');canOptions.forEach(function(option){var check=option.querySelector('.can-check');if(check.value===size){check.checked=true;option.querySelector('.can-qty').value=1;}});updateSelectedSummary();});});
-updateSelectedSummary();
+(function(){
+  const checks=[...document.querySelectorAll('.can-check')];
+  const qtys=[...document.querySelectorAll('.can-qty')];
+  const summary=document.getElementById('selected-types');
+  const total=document.getElementById('order-total');
+  const selected=document.getElementById('selected-cylinders');
+  const estimated=document.getElementById('estimated-total');
+  function update(){
+    const items=checks.filter(c=>c.checked).map(c=>{const q=document.querySelector('.can-qty[data-size="'+c.value+'"]');return {size:c.value,qty:Math.max(1,parseInt(q.value||'1',10)),price:Number(c.dataset.price)}});
+    const amount=items.reduce((sum,i)=>sum+i.qty*i.price,0);
+    summary.textContent=items.length?items.map(i=>i.qty+' × '+i.size+' — R'+(i.qty*i.price)).join(' · '):'No cylinders selected yet';
+    total.textContent='R'+amount.toLocaleString('en-ZA');
+    selected.value=items.map(i=>i.qty+' x '+i.size).join(', ');
+    estimated.value='R'+amount;
+  }
+  checks.forEach(c=>c.addEventListener('change',update));
+  qtys.forEach(q=>q.addEventListener('input',update));
+  document.querySelectorAll('.price-card').forEach(card=>card.addEventListener('click',function(){setTimeout(()=>{const size=card.dataset.size;const check=document.querySelector('.can-check[value="'+size+'"]');if(check){check.checked=true;document.getElementById('order').scrollIntoView({behavior:'smooth'});update();}},0)}));
+  document.getElementById('order-form').addEventListener('submit',function(e){if(!checks.some(c=>c.checked)){e.preventDefault();document.getElementById('form-status').textContent='Please select at least one cylinder size.';return;}update();});
+  update();
+})();
 </script>
 </body>
 </html>
