@@ -15,11 +15,43 @@
   <meta property="og:description" content="Get to know CRS Gas and our LPG refill service for homes and businesses in Boksburg, Germiston and Benoni.">
   <meta property="og:url" content="https://crsgas.co.za/about.html">
   <meta property="og:image" content="https://crsgas.co.za/Images/delivery.avif">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;800&amp;family=Barlow:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css">
-  <link rel="stylesheet" href="about.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com" media="(min-width: 801px)">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin media="(min-width: 801px)">
+  <link rel="preload" href="Images/delivery.avif" as="image" fetchpriority="high" media="(max-width: 800px)">
+  <link rel="preload" href="style.css" as="style" media="(min-width: 801px)">
+  <link rel="preload" href="about.css" as="style" media="(min-width: 801px)">
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;800&amp;family=Barlow:wght@400;500;600;700&amp;display=swap" rel="stylesheet" media="(min-width: 801px)">
+  <link rel="stylesheet" href="style.css" media="(min-width: 801px)">
+  <link rel="stylesheet" href="about.css" media="(min-width: 801px)">
+  <style>
+    @media (max-width: 800px) {
+      :root{--bg:#0c120d;--bg-raised:#141b17;--green-bright:#9bdc4d;--text:#eff3ee;--text-dim:#b1b8b2;--line:rgba(255,255,255,.08);--shadow:0 18px 40px rgba(0,0,0,.22)}
+      *{box-sizing:border-box;margin:0;padding:0}
+      html{scroll-behavior:smooth}
+      body{background:linear-gradient(180deg,#0d130f 0%,#0c120d 100%);color:var(--text);font-family:system-ui,-apple-system,"Segoe UI",sans-serif;font-size:16px;line-height:1.5;-webkit-font-smoothing:antialiased}
+      img{display:block;max-width:100%;height:auto}
+      a{color:inherit;text-decoration:none}
+      h1,h2,h3,.brand-text{font-family:system-ui,-apple-system,"Segoe UI",sans-serif;font-weight:800;line-height:.98;letter-spacing:.01em}
+      .wrap{width:calc(100% - 32px);margin:0 auto}
+      header{position:sticky;top:0;z-index:80;background:rgba(12,18,13,.92);border-bottom:1px solid var(--line)}
+      .header-inner{display:flex;align-items:center;justify-content:center;flex-wrap:wrap;gap:14px;padding:16px 0}
+      .brand{display:flex;align-items:center;gap:9px}.brand svg{width:28px;height:28px}.brand-text{font-size:1.8rem}.brand-text span{color:var(--green-bright)}
+      .main-nav{order:3;width:100%;display:flex;align-items:center;justify-content:center;gap:22px;color:var(--text-dim);font-weight:600;font-size:.95rem}
+      .call-btn{background:var(--green-bright);color:#112214;font-weight:700;padding:9px 16px;border-radius:999px}
+      .about-hero{padding:22px 0 28px;overflow:hidden}.about-hero-inner{display:grid;grid-template-columns:1fr;gap:24px}
+      .eyebrow,.tag{display:inline-block;background:rgba(155,220,77,.12);border:1px solid rgba(155,220,77,.22);color:var(--green-bright);border-radius:999px;padding:7px 11px;font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase}
+      .about-hero h1{font-size:clamp(2.7rem,12vw,4rem);margin-top:14px}.about-hero h1 em{color:var(--green-bright);font-style:normal}.about-lede{margin-top:16px;color:var(--text-dim);font-size:1.05rem}
+      .hero-ctas{margin-top:22px;display:flex;flex-wrap:wrap;gap:10px}.btn{display:inline-flex;align-items:center;justify-content:center;min-height:48px;padding:0 18px;border-radius:13px;font-weight:700;border:1px solid transparent}.btn-primary{background:var(--green-bright);color:#112214}.btn-outline{background:transparent;border-color:var(--line);color:var(--text)}
+      .about-hero-image{aspect-ratio:4/3;overflow:hidden;border-radius:22px}.about-hero-image img{width:100%;height:100%;object-fit:cover;border:1px solid var(--line);box-shadow:var(--shadow)}
+      .about-section{padding:42px 0}.about-section-soft{background:rgba(255,255,255,.018);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+      .about-grid,.story-grid{display:grid;grid-template-columns:1fr;gap:26px}.about-copy h2,.story-grid h2{font-size:clamp(2.15rem,9vw,3rem);margin:16px 0}.about-copy p{color:var(--text-dim);margin-bottom:14px}
+      .about-facts{display:grid;grid-template-columns:1fr 1fr;gap:10px}.fact,.service-card{background:rgba(255,255,255,.025);border:1px solid var(--line);border-radius:17px;padding:17px}.fact strong{display:block;color:var(--green-bright);font-size:.75rem;text-transform:uppercase;letter-spacing:.08em;margin-bottom:5px}.fact span{font-size:.98rem}
+      .section-head{margin-bottom:20px}.section-head h2{font-size:clamp(2.15rem,9vw,3rem);margin-bottom:8px}.section-head p{color:var(--text-dim)}.service-cards{display:grid;grid-template-columns:1fr;gap:12px}.service-card h3{font-size:1.55rem;margin-bottom:8px}.service-card p{color:var(--text-dim)}
+      .story-image{aspect-ratio:4/3;overflow:hidden;border-radius:22px}.story-image img{width:100%;height:100%;object-fit:cover;border:1px solid var(--line)}.text-link{display:inline-block;margin-top:6px;color:var(--green-bright);font-weight:700}
+      .about-contact{padding:10px 0 48px}.contact-panel{display:flex;flex-direction:column;align-items:flex-start;gap:20px;padding:24px 20px;border:1px solid rgba(155,220,77,.22);border-radius:22px;background:linear-gradient(115deg,rgba(62,168,95,.12),rgba(18,23,20,.92))}.contact-panel h2{font-size:clamp(2.1rem,9vw,3rem);margin:10px 0 6px}.contact-panel p{color:var(--text-dim)}.contact-actions{width:100%;display:flex;flex-direction:column;gap:10px}.contact-actions .btn{width:100%}
+      footer{border-top:1px solid var(--line);padding:26px 0 32px;color:var(--text-dim)}.about-footer-links{margin-top:8px}
+    }
+  </style>
   <script type="application/ld+json">
   {
     "@context":"https://schema.org",
@@ -53,10 +85,9 @@
       <p class="about-lede">CRS Gas is a locally focused LPG gas refill and delivery business serving homes and businesses in Boksburg, Germiston and Benoni.</p>
       <div class="hero-ctas"><a class="btn btn-primary" href="index.html#order">Order an LPG refill</a><a class="btn btn-outline" href="https://wa.me/27671161984" target="_blank" rel="noopener">WhatsApp us</a></div>
     </div>
-    <div class="about-hero-image"><img src="Images/delivery.avif" alt="LPG gas cylinders ready for CRS Gas delivery"></div>
+    <div class="about-hero-image"><img src="Images/delivery.avif" alt="LPG gas cylinders ready for CRS Gas delivery" width="1200" height="800" fetchpriority="high" decoding="async"></div>
   </div>
 </section>
-
 <section class="about-section">
   <div class="wrap about-grid">
     <div class="about-copy">
@@ -74,7 +105,6 @@
     </div>
   </div>
 </section>
-
 <section class="about-section about-section-soft">
   <div class="wrap">
     <div class="section-head">
@@ -89,10 +119,9 @@
     </div>
   </div>
 </section>
-
 <section class="about-section">
   <div class="wrap story-grid">
-    <div class="story-image"><img src="Images/lineup.avif" alt="Range of LPG gas cylinders available for refill"></div>
+    <div class="story-image"><img src="Images/lineup.avif" alt="Range of LPG gas cylinders available for refill" width="1200" height="800" loading="lazy" decoding="async"></div>
     <div class="about-copy">
       <span class="tag">Our approach</span>
       <h2>Keep LPG supply simple.</h2>
@@ -102,7 +131,6 @@
     </div>
   </div>
 </section>
-
 <section class="about-contact">
   <div class="wrap contact-panel">
     <div><span class="tag">Need a refill?</span><h2>Speak to CRS Gas.</h2><p>For orders and delivery enquiries, contact Christo or Ronnie directly.</p></div>
