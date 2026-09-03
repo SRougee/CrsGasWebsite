@@ -1,0 +1,15 @@
+# Performance headers for the NewFeatures deployment
+/
+  Link: </Images/hero-braai.avif>; rel=preload; as=image; fetchpriority=high
+
+/Images/*
+  Cache-Control: public, max-age=604800, stale-while-revalidate=86400
+
+/*.css
+  Cache-Control: public, max-age=604800, stale-while-revalidate=86400
+
+/*.js
+  Cache-Control: public, max-age=604800, stale-while-revalidate=86400
+
+/favicon.svg
+  Cache-Control: public, max-age=604800, stale-while-revalidate=86400
