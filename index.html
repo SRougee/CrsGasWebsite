@@ -21,8 +21,11 @@
   <meta name="twitter:image" content="https://crsgas.co.za/hero-braai.avif">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;800&amp;family=Barlow:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css">
+  <link rel="preload" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;800&amp;family=Barlow:wght@400;500;600;700&amp;display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
+  <noscript><link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;800&amp;family=Barlow:wght@400;500;600;700&amp;display=swap" rel="stylesheet"></noscript>
+  <link rel="preload" as="image" href="./Images/hero-braai.avif" fetchpriority="high">
+  <link rel="preload" as="style" href="style.css" onload="this.onload=null;this.rel='stylesheet'">
+  <noscript><link rel="stylesheet" href="style.css"></noscript>
   <!-- Google tag (gtag.js) -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-MKJSPKYF49"></script>
   <script>
@@ -58,7 +61,7 @@
       <p class="lede">CRS Gas provides LPG gas refills and local delivery for homes and businesses. Choose from 5kg to 48kg cylinders and arrange your refill online or directly with our team.</p>
       <div class="hero-ctas"><a class="btn btn-primary" href="./index.html#order">Order an LPG refill</a><a class="btn btn-outline" href="https://wa.me/27671161984" target="_blank" rel="noopener">WhatsApp us</a></div>
     </div>
-    <div class="hero-visual"><img src="./Images/hero-braai.avif" alt="LPG gas used for outdoor cooking and braai"></div>
+    <div class="hero-visual"><img src="./Images/hero-braai.avif" alt="LPG gas used for outdoor cooking and braai" width="1200" height="800" fetchpriority="high" decoding="async"></div>
   </div>
 </section>
 <div class="wrap"><div class="trust"><div class="trust-item"><strong>Local service</strong>Boksburg, Germiston &amp; Benoni</div><div class="trust-item"><strong>Experienced</strong>Industry knowledge behind the business</div><div class="trust-item"><strong>Convenient</strong>Order a refill and arrange delivery</div></div></div>
@@ -66,17 +69,17 @@
   <div class="wrap">
     <div class="section-head"><h2>LPG gas refill prices</h2><p>Clear pricing for popular LPG cylinder sizes. Select a size below to start your refill order.</p></div>
     <div class="price-grid">
-      <a class="price-card" href="./index.html#order" data-size="5kg" data-price="150"><img src="./Images/cyl-5kg.avif" alt="5kg LPG gas cylinder" class="price-image"><div class="price-body"><div class="price-topline"><span>5kg</span><strong>R150</strong></div><p>Small &amp; portable</p></div></a>
-      <a class="price-card" href="./index.html#order" data-size="9kg" data-price="300"><img src="./Images/cyl-9kg.avif" alt="9kg LPG gas cylinder" class="price-image"><div class="price-body"><div class="price-topline"><span>9kg</span><strong>R300</strong></div><p>Home cooking</p></div></a>
-      <a class="price-card" href="./index.html#order" data-size="14kg" data-price="500"><img src="./Images/cyl-14kg.avif" alt="14kg LPG gas cylinder" class="price-image"><div class="price-body"><div class="price-topline"><span>14kg</span><strong>R500</strong></div><p>Household staple</p></div></a>
-      <a class="price-card" href="./index.html#order" data-size="19kg" data-price="620"><img src="./Images/cyl-19kg.avif" alt="19kg LPG gas cylinder" class="price-image"><div class="price-body"><div class="price-topline"><span>19kg</span><strong>R620</strong></div><p>Small business</p></div></a>
-      <a class="price-card wide" href="./index.html#order" data-size="48kg" data-price="1450"><img src="./Images/cyl-48kg.avif" alt="48kg LPG gas cylinder" class="price-image"><div class="price-body"><div class="price-topline"><span>48kg</span><strong>R1450</strong></div><p>Commercial demand</p></div></a>
+      <a class="price-card" href="./index.html#order" data-size="5kg" data-price="150"><img src="./Images/cyl-5kg.avif" alt="5kg LPG gas cylinder" class="price-image" width="600" height="800" loading="lazy" decoding="async"><div class="price-body"><div class="price-topline"><span>5kg</span><strong>R150</strong></div><p>Small &amp; portable</p></div></a>
+      <a class="price-card" href="./index.html#order" data-size="9kg" data-price="300"><img src="./Images/cyl-9kg.avif" alt="9kg LPG gas cylinder" class="price-image" width="600" height="800" loading="lazy" decoding="async"><div class="price-body"><div class="price-topline"><span>9kg</span><strong>R300</strong></div><p>Home cooking</p></div></a>
+      <a class="price-card" href="./index.html#order" data-size="14kg" data-price="500"><img src="./Images/cyl-14kg.avif" alt="14kg LPG gas cylinder" class="price-image" width="600" height="800" loading="lazy" decoding="async"><div class="price-body"><div class="price-topline"><span>14kg</span><strong>R500</strong></div><p>Household staple</p></div></a>
+      <a class="price-card" href="./index.html#order" data-size="19kg" data-price="620"><img src="./Images/cyl-19kg.avif" alt="19kg LPG gas cylinder" class="price-image" width="600" height="800" loading="lazy" decoding="async"><div class="price-body"><div class="price-topline"><span>19kg</span><strong>R620</strong></div><p>Small business</p></div></a>
+      <a class="price-card wide" href="./index.html#order" data-size="48kg" data-price="1450"><img src="./Images/cyl-48kg.avif" alt="48kg LPG gas cylinder" class="price-image" width="600" height="800" loading="lazy" decoding="async"><div class="price-body"><div class="price-topline"><span>48kg</span><strong>R1450</strong></div><p>Commercial demand</p></div></a>
     </div>
-    <div class="delivery-banner"><div class="delivery-image"><img src="./Images/delivery.avif" alt="CRS Gas LPG cylinder delivery vehicle"></div><div class="delivery-copy"><span class="tag">Local delivery</span><h3>LPG gas delivered across Boksburg, Germiston and Benoni.</h3><p>Order your refill online and we'll confirm your delivery by WhatsApp or phone.</p></div></div>
+    <div class="delivery-banner"><div class="delivery-image"><img src="./Images/delivery.avif" alt="CRS Gas LPG cylinder delivery vehicle" width="1200" height="800" loading="lazy" decoding="async"></div><div class="delivery-copy"><span class="tag">Local delivery</span><h3>LPG gas delivered across Boksburg, Germiston and Benoni.</h3><p>Order your refill online and we'll confirm your delivery by WhatsApp or phone.</p></div></div>
   </div>
 </section>
-<section class="feature-story"><div class="wrap feature-wrap"><div class="feature-photo"><img src="./Images/kitchen.avif" alt="Home kitchen using LPG gas for cooking"></div><div class="feature-copy"><span class="tag">Why choose CRS Gas</span><h2>Reliable LPG gas for homes and businesses.</h2><ul><li>Experienced knowledge of the gas industry</li><li>Clear pricing with no unnecessary surprises</li><li>Refill and delivery service in Boksburg, Germiston and Benoni</li></ul><div class="mini-card"><img src="./Images/valve.avif" alt="LPG gas cylinder valve"><div><strong>Focused LPG service</strong><span>Practical refill support</span></div></div></div></div></section>
-<section class="lineup-section"><div class="wrap lineup-wrap"><div class="lineup-copy"><span class="tag">Our LPG cylinder range</span><h2>From everyday cooking to larger commercial demand.</h2><p>Choose from 5kg, 9kg, 14kg, 19kg and 48kg LPG cylinders for household, hospitality and commercial needs.</p><a class="btn btn-outline" href="./about.html">Learn more about CRS Gas</a></div><div class="lineup-photo"><img src="./Images/lineup.avif" alt="Range of LPG gas cylinders from 5kg to 48kg"></div></div></section>
+<section class="feature-story"><div class="wrap feature-wrap"><div class="feature-photo"><img src="./Images/kitchen.avif" alt="Home kitchen using LPG gas for cooking" width="1200" height="900" loading="lazy" decoding="async"></div><div class="feature-copy"><span class="tag">Why choose CRS Gas</span><h2>Reliable LPG gas for homes and businesses.</h2><ul><li>Experienced knowledge of the gas industry</li><li>Clear pricing with no unnecessary surprises</li><li>Refill and delivery service in Boksburg, Germiston and Benoni</li></ul><div class="mini-card"><img src="./Images/valve.avif" alt="LPG gas cylinder valve" width="118" height="80" loading="lazy" decoding="async"><div><strong>Focused LPG service</strong><span>Practical refill support</span></div></div></div></div></section>
+<section class="lineup-section"><div class="wrap lineup-wrap"><div class="lineup-copy"><span class="tag">Our LPG cylinder range</span><h2>From everyday cooking to larger commercial demand.</h2><p>Choose from 5kg, 9kg, 14kg, 19kg and 48kg LPG cylinders for household, hospitality and commercial needs.</p><a class="btn btn-outline" href="./about.html">Learn more about CRS Gas</a></div><div class="lineup-photo"><img src="./Images/lineup.avif" alt="Range of LPG gas cylinders from 5kg to 48kg" width="1200" height="800" loading="lazy" decoding="async"></div></div></section>
 <section class="order" id="order">
   <div class="wrap"><div class="section-head"><h2>Order LPG gas online</h2><p>Pick a cylinder size and quantity, add your delivery address, and we'll confirm by WhatsApp or phone.</p></div>
     <form id="order-form" action="https://formspree.io/f/xoeqeojy" method="POST"><input type="hidden" name="_subject" value="New CRS Gas LPG order">
