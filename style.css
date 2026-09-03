@@ -22,7 +22,18 @@ body {
   line-height: 1.5;
   -webkit-font-smoothing: antialiased;
 }
-img { display: block; max-width: 100%; }
+img { display: block; max-width: 100%; height: auto; }
+.hero-visual img { aspect-ratio: 3 / 2; }
+.price-image { aspect-ratio: 3 / 4; }
+.delivery-image img { aspect-ratio: 3 / 2; }
+.feature-photo img { aspect-ratio: 4 / 3; }
+.mini-card img { aspect-ratio: 59 / 40; }
+.lineup-photo img { aspect-ratio: 3 / 2; }
+
+.feature-story, .lineup-section, .order, .contact, .service-area {
+  content-visibility: auto;
+  contain-intrinsic-size: 800px;
+}
 a { color: inherit; text-decoration: none; }
 
 h1,h2,h3,.brand-text {
@@ -131,9 +142,9 @@ header {
   border-radius: 14px;
   font-weight: 700;
   border: 1px solid transparent;
-  transition: transform 0.15s ease, filter 0.15s ease;
+  transition: transform 0.15s ease;
 }
-.btn:hover { transform: translateY(-1px); filter: brightness(1.04); }
+.btn:hover { transform: translateY(-1px); }
 .btn-primary {
   background: var(--green-bright);
   color: #112214;
@@ -295,7 +306,7 @@ textarea { min-height: 110px; resize: vertical; }
 .can-option {
   background: rgba(255,255,255,0.02); border: 1px solid var(--line); border-radius: 18px;
   padding: 14px 14px 12px; display: flex; flex-direction: column; gap: 10px;
-  transition: border-color 0.2s ease, transform 0.2s ease;
+  transition: border-color 0.2s ease;
 }
 .can-option.selected {
   border-color: rgba(155,220,77,0.6);
@@ -390,4 +401,3 @@ footer {
   .footer-content { flex-direction: column; align-items: flex-start; gap: 16px; }
   .footer-links { flex-wrap: wrap; }
 }
-
