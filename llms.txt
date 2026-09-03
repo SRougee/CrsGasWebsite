@@ -22,11 +22,11 @@ CRS Gas provides:
 
 ## Cylinder sizes and prices
 
-- 5kg LPG cylinder — R165
-- 9kg LPG cylinder — R305
-- 14kg LPG cylinder — R520
-- 19kg LPG cylinder — R650
-- 48kg LPG cylinder — R1520
+- 5kg LPG cylinder — R150
+- 9kg LPG cylinder — R300
+- 14kg LPG cylinder — R500
+- 19kg LPG cylinder — R620
+- 48kg LPG cylinder — R1450
 
 ## Delivery
 
