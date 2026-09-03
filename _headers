@@ -1,6 +1,8 @@
 # Performance headers for the NewFeatures deployment
 /
   Link: </Images/hero-braai.avif>; rel=preload; as=image; fetchpriority=high
+  Link: </style.css>; rel=preload; as=style
+  Link: <https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;800&family=Barlow:wght@400;500;600;700&display=swap>; rel=preload; as=style
 
 /Images/*
   Cache-Control: public, max-age=604800, stale-while-revalidate=86400
